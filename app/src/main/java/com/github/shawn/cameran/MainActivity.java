@@ -14,5 +14,6 @@ public class MainActivity extends AppCompatActivity {
         Log.d("Trunk", "onCreate");
         hoge = "hoga";
 
+
     }
 }
