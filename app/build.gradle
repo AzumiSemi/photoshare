@@ -9,7 +9,7 @@ android {
 
     defaultConfig {
         applicationId "com.github.shawn.cameran"
-        minSdkVersion 15
+        minSdkVersion 16
         targetSdkVersion 23
         versionCode 1
         versionName "1.0"
@@ -50,4 +50,6 @@ dependencies {
 
     /* 4) Add the CSDK framework dependencies (Make sure these version numbers are correct) */
     compile 'com.adobe.creativesdk.foundation:auth:0.9.7'
+    compile 'com.adobe.creativesdk:image:4.4.8'
+
 }
