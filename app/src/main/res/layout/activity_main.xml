@@ -16,7 +16,7 @@
         android:layout_height="wrap_content"
         android:text="カメラ"
         android:textSize="48dip"/>
-
+    
     <Button
         android:id="@+id/gallery"
         android:layout_below="@+id/camera"
