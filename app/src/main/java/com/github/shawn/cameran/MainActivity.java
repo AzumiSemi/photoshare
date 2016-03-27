@@ -28,10 +28,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View v) {
-        Toast.makeText(MainActivity.this, "push", Toast.LENGTH_SHORT).show();
         if (v.getId() == R.id.camera) {
+            Toast.makeText(MainActivity.this, "カメラ", Toast.LENGTH_SHORT).show();
         } else if (v.getId() == R.id.gallery) {
+            Toast.makeText(MainActivity.this, "ギャラリー", Toast.LENGTH_SHORT).show();
         } else {
+            Toast.makeText(MainActivity.this, "シェア", Toast.LENGTH_SHORT).show();
         }
     }
 }
