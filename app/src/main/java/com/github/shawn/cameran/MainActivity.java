@@ -11,35 +11,27 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private View.OnClickListener mOnCheckListneer = new View.OnClickListener(){
-        @Override
-                public void onClick(View v) {
-
-            Toast.makeText(MainActivity.this, "押されました", Toast.LENGTH_SHORT).show();
-                Log.d("Trunk", "    ");
-                Log.d("Trunk", "");
-
-        }
-
-    };
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        findViewById(R.id.camera);
-            Button camera = (Button) findViewById(R.id.camera);
-            camera.setOnClickListener(mOnCheckListneer);
-
-        // ATTENTION: This was auto-generated to implement the App Indexing API.
-        // See https://g.co/AppIndexing/AndroidStudio for more information.
+        Button camera = (Button) findViewById(R.id.camera);
         camera.setOnClickListener(this);
+
+        Button gallery = (Button) findViewById(R.id.gallery);
+        gallery.setOnClickListener(this);
+
+        Button share = (Button) findViewById(R.id.share);
+        share.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View v) {
-            Toast.makeText(MainActivity.this, "押されました", Toast.LENGTH_SHORT).show();
-        
+        Toast.makeText(MainActivity.this, "push", Toast.LENGTH_SHORT).show();
+        if (v.getId() == R.id.camera) {
+        } else if (v.getId() == R.id.gallery) {
+        } else {
+        }
     }
 }
