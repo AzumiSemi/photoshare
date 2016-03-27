@@ -40,5 +40,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View v) {
             Toast.makeText(MainActivity.this, "押されました", Toast.LENGTH_SHORT).show();
+        
     }
 }

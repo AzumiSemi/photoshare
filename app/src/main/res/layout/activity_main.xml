@@ -19,7 +19,6 @@
         android:layout_alignTop="@+id/gallery"
         android:layout_centerHorizontal="true" />
 
-
     <Button
         android:id="@+id/gallery"
         android:layout_width="200dp"
