@@ -16,8 +16,8 @@
             android:shape="oval"
             android:useLevel="false">
             <solid
-                android:color="@color/colorAccent" />
+                android:color="@color/colorPrimary" />
         </shape>
     </item>
-//ボタンの設定
+    //ボタンの設定
 </selector>
