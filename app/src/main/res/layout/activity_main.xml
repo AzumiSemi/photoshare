@@ -23,7 +23,7 @@
         android:layout_gravity="center"
         android:text="@string/app_camera"
         android:background="@drawable/camera_definition"
-        android:textSize="20sp"
+        android:textSize="@dimen/text_size"
         android:layout_above="@+id/spacer"
         android:layout_centerInParent="true" />
 
@@ -33,7 +33,7 @@
         android:layout_height="@dimen/button_height"
         android:layout_gravity="center"
         android:text="@string/app_gallery"
-        android:textSize="20sp"
+        android:textSize="@dimen/text_size"
         android:layout_below="@+id/spacer"
         android:layout_toLeftOf="@+id/spacer" />
 
@@ -43,7 +43,7 @@
         android:layout_height="@dimen/button_height"
         android:layout_gravity="center"
         android:text="@string/app_share"
-        android:textSize="20sp"
+        android:textSize="@dimen/text_size"
         android:layout_below="@+id/spacer"
         android:layout_toRightOf="@+id/spacer" />
 
