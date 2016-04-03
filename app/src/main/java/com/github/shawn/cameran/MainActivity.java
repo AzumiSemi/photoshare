@@ -10,13 +10,10 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
-
 import com.adobe.creativesdk.aviary.AdobeImageIntent;
 import com.github.shawn.cameran.util.Util;
 
-
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
-
     private  Uri fileUri;
     private Uri editedFileUri;
 
@@ -42,90 +39,91 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     @Override
-    public void onClick(View v) {
-        if (v.getId() == R.id.camera) {
+        public void onClick(View v) {
+            if (v.getId() == R.id.camera) {
             //Toast.makeText(MainActivity.this, "カメラ", Toast.LENGTH_SHORT).show();
-            launchCamera();
-        } else if (v.getId() == R.id.gallery) {
+                launchCamera();
+                //カメラ呼び出し
+            } else if (v.getId() == R.id.gallery) {
             //Toast.makeText(MainActivity.this, "ギャラリー", Toast.LENGTH_SHORT).show();
-            launchGallery(REQUEST_CODE_GALLERY);
-        } else {
-            //Toast.makeText(MainActivity.this, "シェア", Toast.LENGTH_SHORT).show();
+                launchGallery(REQUEST_CODE_GALLERY);
+            } else {
+             //Toast.makeText(MainActivity.this, "シェア", Toast.LENGTH_SHORT).show();
             launchGallery(REQEST_CODE_GALLERY_NOTEDITOR);
-        }
+         }
     }
-    private void launchCamera() {
-        Intent cameraintent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        fileUri = Util.getOutputMediaFileUri(Util.MEDIA_TYPE_IMAGE);
-        cameraintent.putExtra(MediaStore.EXTRA_OUTPUT, fileUri);
-        startActivityForResult(cameraintent, REQUEST_CODE_CAMERA);
-    }
-    private void launchGallery(int requestCode){
+        private void launchCamera() {
+            Intent cameraintent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+            fileUri = Util.getOutputMediaFileUri(Util.MEDIA_TYPE_IMAGE);
+            cameraintent.putExtra(MediaStore.EXTRA_OUTPUT, fileUri);
+            startActivityForResult(cameraintent, REQUEST_CODE_CAMERA);
+         }
+        private void launchGallery(int requestCode){
         Intent galleryintent = new Intent(Intent.ACTION_PICK,
                 MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-        startActivityForResult(galleryintent, requestCode);
-    }
-    private void lauchEditor(Uri uri){
-        Intent imageEditorIntent = new AdobeImageIntent.Builder(this)
+            startActivityForResult(galleryintent, requestCode);
+        }
+        private void lauchEditor(Uri uri){
+            Intent imageEditorIntent = new AdobeImageIntent.Builder(this)
                 .setData(uri)
                 .build();
-        startActivityForResult(imageEditorIntent, REQUEST_CODE_EDITOR);
-    }
-    private void shareimage(Uri uri){
-        Intent shareIntent = new Intent(Intent.ACTION_SEND);
-        shareIntent.putExtra(Intent.EXTRA_STREAM, uri);
-        shareIntent.setType("image/ipeg");
-        startActivityForResult(Intent.createChooser(shareIntent, getString(R.string.app_share)), REQEST_CODE_SHARE);
-    }
+            startActivityForResult(imageEditorIntent, REQUEST_CODE_EDITOR);
+        }
+        private void shareimage(Uri uri){
+            Intent shareIntent = new Intent(Intent.ACTION_SEND);
+            shareIntent.putExtra(Intent.EXTRA_STREAM, uri);
+            shareIntent.setType("image/ipeg");
+            startActivityForResult(Intent.createChooser(shareIntent, getString(R.string.app_share)), REQEST_CODE_SHARE);
+        }
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if(resultCode != RESULT_OK){
-            if(requestCode == REQEST_CODE_SHARE){
+        protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (resultCode != RESULT_OK) {
+            if (requestCode == REQEST_CODE_SHARE) {
                 Toast.makeText(MainActivity.this, "失敗しました", Toast.LENGTH_SHORT).show();
-            }
-            return;
-            //shareミスの際の表示コード
         }
-        switch(requestCode){
-            case REQUEST_CODE_CAMERA:
-               /* if (data != null){
-                    Bundle bundle = data.getExtras();
-                    if(bundle.get("data") == null){
-                        return;
-                    image.setImageBitmap((Bitmap) bundle.get("data"));
-                }
-                break;  */
-                Log.d("Trunk", "fileUri:" + fileUri);
-                lauchEditor(fileUri);
-                break;
-            //cameraタッチの際の表示コード
+        return;
+        //shareミスの際の表示コード
+    }
+    switch(requestCode){
+        case REQUEST_CODE_CAMERA:
+        /* if (data != null){
+            Bundle bundle = data.getExtras();
+            if(bundle.get("data") == null){
+            return;
+            image.setImageBitmap((Bitmap) bundle.get("data"));
+              }
+            break;  */
+             Log.d("Trunk", "fileUri:" + fileUri);
+            lauchEditor(fileUri);
+            break;
+        //cameraタッチの際の表示コード
 
-            case REQUEST_CODE_GALLERY:
-                fileUri = data.getData();
+        case REQUEST_CODE_GALLERY:
+            fileUri = data.getData();
                 Log.d("TRUNK", "fileUri" + fileUri);
                 lauchEditor(fileUri);
                 break;
             //Editorありのgallery→share
 
-            case REQEST_CODE_GALLERY_NOTEDITOR:
-                fileUri = data.getData();
-                Log.d("TRUNK", "fileUri" + fileUri);
-                shareimage(fileUri);
-                break;
-            //Editorなしのgallery→share
+        case REQEST_CODE_GALLERY_NOTEDITOR:
+            fileUri = data.getData();
+            Log.d("TRUNK", "fileUri" + fileUri);
+            shareimage(fileUri);
+            break;
+        //Editorなしのgallery→share
 
-            case REQUEST_CODE_EDITOR:
-                editedFileUri = data.getData();
-                Log.d("TRUNK", "editedFileUri" + editedFileUri);
-                //image.setImageURI(editedFileUri);
-                shareimage(editedFileUri);
-                break;
+        case REQUEST_CODE_EDITOR:
+            editedFileUri = data.getData();
+            Log.d("TRUNK", "editedFileUri" + editedFileUri);
+            //image.setImageURI(editedFileUri);
+            shareimage(editedFileUri);
+            break;
             //Editorのコード
 
-            case REQEST_CODE_SHARE:
-                Toast.makeText(MainActivity.this, "シェアしました", Toast.LENGTH_SHORT).show();
-                break;
+        case REQEST_CODE_SHARE:
+            Toast.makeText(MainActivity.this, "シェアしました", Toast.LENGTH_SHORT).show();
+             break;
             //shareをタッチした際の表示コード
         }
     }
