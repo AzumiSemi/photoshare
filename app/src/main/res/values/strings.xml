@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">cameran</string>
+    <string name="app_name">PhotoShare</string>
     <string name="app_camera">カメラ</string>
     <string name="app_gallery">ギャラリー</string>
     <string name="app_share">シェア</string>

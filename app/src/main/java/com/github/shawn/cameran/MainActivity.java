@@ -85,6 +85,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 Toast.makeText(MainActivity.this, "失敗しました", Toast.LENGTH_SHORT).show();
             }
             return;
+            //shareミスの際の表示コード
         }
         switch(requestCode){
             case REQUEST_CODE_CAMERA:
@@ -98,18 +99,21 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 Log.d("Trunk", "fileUri:" + fileUri);
                 lauchEditor(fileUri);
                 break;
+            //cameraタッチの際の表示コード
 
             case REQUEST_CODE_GALLERY:
                 fileUri = data.getData();
                 Log.d("TRUNK", "fileUri" + fileUri);
                 lauchEditor(fileUri);
                 break;
+            //Editorありのgallery→share
 
             case REQEST_CODE_GALLERY_NOTEDITOR:
                 fileUri = data.getData();
                 Log.d("TRUNK", "fileUri" + fileUri);
                 shareimage(fileUri);
                 break;
+            //Editorなしのgallery→share
 
             case REQUEST_CODE_EDITOR:
                 editedFileUri = data.getData();
@@ -117,10 +121,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 //image.setImageURI(editedFileUri);
                 shareimage(editedFileUri);
                 break;
+            //Editorのコード
 
             case REQEST_CODE_SHARE:
                 Toast.makeText(MainActivity.this, "シェアしました", Toast.LENGTH_SHORT).show();
                 break;
+            //shareをタッチした際の表示コード
         }
     }
 }

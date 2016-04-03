@@ -8,7 +8,7 @@ android {
     buildToolsVersion "23.0.1"
 
     defaultConfig {
-        applicationId "com.github.shawn.cameran"
+        applicationId "com.shawn.camera"
         minSdkVersion 16
         targetSdkVersion 23
         versionCode 1
