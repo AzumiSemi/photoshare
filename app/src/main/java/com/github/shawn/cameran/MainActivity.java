@@ -22,8 +22,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     public static final int REQUEST_CODE_CAMERA = 10;
     public static final int REQUEST_CODE_GALLERY = 11;
-    public static final int REQUEST_CODE_EDITOR = 12;
-    public static final int REQEST_CODE_SHARE = 13;
+    public static final int REQEST_CODE_GALLERY_NOTEDITOR = 12;
+    public static final int REQUEST_CODE_EDITOR = 13;
+    public static final int REQEST_CODE_SHARE = 14;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,11 +48,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             launchCamera();
         } else if (v.getId() == R.id.gallery) {
             //Toast.makeText(MainActivity.this, "ギャラリー", Toast.LENGTH_SHORT).show();
-            launchGallery();
+            launchGallery(REQUEST_CODE_GALLERY);
         } else {
-            shareimage();
             //Toast.makeText(MainActivity.this, "シェア", Toast.LENGTH_SHORT).show();
-
+            //launchGallery();
         }
     }
     private void launchCamera() {
@@ -60,10 +60,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         cameraintent.putExtra(MediaStore.EXTRA_OUTPUT, fileUri);
         startActivityForResult(cameraintent, REQUEST_CODE_CAMERA);
     }
-    private void launchGallery(){
+    private void launchGallery(int requestCode){
         Intent galleryintent = new Intent(Intent.ACTION_PICK,
                 MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-        startActivityForResult(galleryintent, REQUEST_CODE_GALLERY);
+        startActivityForResult(galleryintent, requestCode);
     }
     private void lauchEditor(Uri uri){
         Intent imageEditorIntent = new AdobeImageIntent.Builder(this)
@@ -75,7 +75,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Intent shareIntent = new Intent(Intent.ACTION_SEND);
         shareIntent.putExtra(Intent.EXTRA_STREAM, editedFileUri);
         shareIntent.setType("image/ipeg");
-        startActivityForResult(Intent.createChooser(shareIntent,getString(R.string.app_share)),REQEST_CODE_SHARE);
+        startActivityForResult(Intent.createChooser(shareIntent, getString(R.string.app_share)), REQEST_CODE_SHARE);
     }
 
     @Override
@@ -92,7 +92,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     Bundle bundle = data.getExtras();
                     if(bundle.get("data") == null){
                         return;
-                    r
                     image.setImageBitmap((Bitmap) bundle.get("data"));
                 }
                 break;  */
@@ -110,6 +109,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 editedFileUri = data.getData();
                 Log.d("TRUNK", "editedFileUri" + editedFileUri);
                 //image.setImageURI(editedFileUri);
+                shareimage();
                 break;
 
             case REQEST_CODE_SHARE:
