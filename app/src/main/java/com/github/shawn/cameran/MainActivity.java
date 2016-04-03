@@ -71,9 +71,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 .build();
         startActivityForResult(imageEditorIntent, REQUEST_CODE_EDITOR);
     }
-    private void shareimage(){
+    private void shareimage(Uri uri){
         Intent shareIntent = new Intent(Intent.ACTION_SEND);
-        shareIntent.putExtra(Intent.EXTRA_STREAM, editedFileUri);
+        shareIntent.putExtra(Intent.EXTRA_STREAM, uri);
         shareIntent.setType("image/ipeg");
         startActivityForResult(Intent.createChooser(shareIntent, getString(R.string.app_share)), REQEST_CODE_SHARE);
     }
@@ -106,16 +106,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
 
             case REQEST_CODE_GALLERY_NOTEDITOR:
-                editedFileUri = data.getData();
+                fileUri = data.getData();
                 Log.d("TRUNK", "fileUri" + fileUri);
-                shareimage();
+                shareimage(fileUri);
                 break;
 
             case REQUEST_CODE_EDITOR:
                 editedFileUri = data.getData();
                 Log.d("TRUNK", "editedFileUri" + editedFileUri);
                 //image.setImageURI(editedFileUri);
-                shareimage();
+                shareimage(editedFileUri);
                 break;
 
             case REQEST_CODE_SHARE:
