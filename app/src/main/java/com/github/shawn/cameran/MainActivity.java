@@ -51,7 +51,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             launchGallery(REQUEST_CODE_GALLERY);
         } else {
             //Toast.makeText(MainActivity.this, "シェア", Toast.LENGTH_SHORT).show();
-            //launchGallery();
+            launchGallery(REQEST_CODE_GALLERY_NOTEDITOR);
         }
     }
     private void launchCamera() {
@@ -103,6 +103,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 fileUri = data.getData();
                 Log.d("TRUNK", "fileUri" + fileUri);
                 lauchEditor(fileUri);
+                break;
+
+            case REQEST_CODE_GALLERY_NOTEDITOR:
+                editedFileUri = data.getData();
+                Log.d("TRUNK", "fileUri" + fileUri);
+                shareimage();
                 break;
 
             case REQUEST_CODE_EDITOR:
