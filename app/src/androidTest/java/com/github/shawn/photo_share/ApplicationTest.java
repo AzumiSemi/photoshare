@@ -1,4 +1,4 @@
-package com.github.shawn.cameran;
+package com.github.shawn.photo_share;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;

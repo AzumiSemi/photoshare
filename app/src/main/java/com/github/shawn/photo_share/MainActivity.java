@@ -1,7 +1,6 @@
-package com.github.shawn.cameran;
+package com.github.shawn.photo_share;
 
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.net.Uri;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
@@ -11,7 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 import com.adobe.creativesdk.aviary.AdobeImageIntent;
-import com.github.shawn.cameran.util.Util;
+import com.github.shawn.photo_share.util.Util;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     private  Uri fileUri;

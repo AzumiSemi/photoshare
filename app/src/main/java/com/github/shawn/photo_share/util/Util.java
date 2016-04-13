@@ -1,4 +1,4 @@
-package com.github.shawn.cameran.util;
+package com.github.shawn.photo_share.util;
 
 import android.net.Uri;
 import android.os.Environment;

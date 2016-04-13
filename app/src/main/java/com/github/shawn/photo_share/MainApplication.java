@@ -1,10 +1,9 @@
-package com.github.shawn.cameran;
+package com.github.shawn.photo_share;
 
 import android.app.Application;
 
 import com.adobe.creativesdk.aviary.IAviaryClientCredentials;
 import com.adobe.creativesdk.foundation.AdobeCSDKFoundation;
-import com.adobe.creativesdk.foundation.auth.IAdobeAuthClientCredentials;
 
 /**
  * Created by 翼 on 2016/03/13.
